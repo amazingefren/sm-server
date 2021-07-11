@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from '@global/users/user.service'
-import { User, UserUniqueInput } from '@global/users/user.model';
 import { JwtService } from '@nestjs/jwt'
+import { AuthLoginInput } from './auth.model';
+import { User } from '@global/users/user.model';
 
 @Injectable()
 export class AuthService {
@@ -10,31 +11,16 @@ export class AuthService {
     private jwtService: JwtService
   ){}
 
-  async validateUser(username: UserUniqueInput): Promise<User|null> {
-    const user = await this.userService.findOneByUsername(username)
-    if (user && user.username == "efren") {
-      const { ...result } = user;
-      console.log(result)
-      return result
-    }
-    return null
+  async validateUser(input: number): Promise<User|null> {
+    return this.userService.findOneById({id:input})
   }
 
-  async login(user:User){
-    
-    // const payload = this.validateUser(user.username) 
-    // this.validateUser(user)
-    // TODO WORK ON THIS
-    // const test = await this.userService.findOneByUsername({username: user.username})
-
-    // const user = await this.userService.findOneByUsername(user.username)
-
-    // console.log(this.validateUser(user))
-
-    const payload = {username: user.username, sub: user.id}
-
-    return {
-      access_token: this.jwtService.sign(payload)
+  async login(input:AuthLoginInput){
+    const {username, password} = input
+    const user = await this.userService.findOneByUsername(username)
+    if (user && username == user.username && password == user.password){
+      return {access_token: this.jwtService.sign({sub: user.id})} 
     }
+    return null
   }
 }

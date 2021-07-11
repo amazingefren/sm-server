@@ -1,8 +1,24 @@
 import 'reflect-metadata'
-import { Field, Int, ObjectType, InputType } from '@nestjs/graphql'
-import { Post } from "@global/posts/post.model"
+import { Field, InputType, ObjectType } from '@nestjs/graphql'
+// import { Post } from "@global/posts/post.model"
+
+@ObjectType()
+export class AuthLoginTokenResponse {
+  @Field()
+  access_token: string
+}
+
 
 @InputType()
+export class AuthLoginInput{
+  @Field({nullable: false})
+  username: string
+
+  @Field({nullable: false})
+  password: string
+}
+
+/* @InputType()
 export class UserCreateInput {
   @Field({nullable:false})
   username: string
@@ -32,4 +48,4 @@ export class User {
 
   @Field(_=>String, {nullable: true})
   password?: string;
-}
+} */

@@ -11,12 +11,13 @@ export class UserService {
     id: 0,
     username: "bob",
     joinDate: new Date(Date.now()),
+    password: "HI",
     posts: [],
   };
 
   // TODO CHANGE NULL TO SUPPORT ERROR TYPES FOR FRONT END
   async create(user: UserCreateInput): Promise<User | null> {
-    return await this.prisma.user.create({data:{username:user.username}})
+    return await this.prisma.user.create({data:{username:user.username, password: user.password}})
   }
 
 
@@ -27,9 +28,8 @@ export class UserService {
     return id.id == 0 ? this.user: await this.prisma.user.findUnique({where:input})
   }
 
-  async findOneByUsername(username: UserUniqueInput): Promise<User | null> {
-    let input: Prisma.UserWhereUniqueInput = username
-    return await this.prisma.user.findUnique({where:input})
+  async findOneByUsername(username: string): Promise<User | null> {
+    return await this.prisma.user.findUnique({where:{username}})
   }
 
   async findAll(): Promise<User[] | null> {

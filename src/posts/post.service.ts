@@ -10,12 +10,10 @@ export class PostService {
   }
 
   create(post: Post): Post {
-    console.log(post);
     return post
   }
 
   findOneById(id: string): Post {
-    console.log("HI")
     if (id == this.post.id) {
       return this.post
     }

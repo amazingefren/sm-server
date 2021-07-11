@@ -3,10 +3,11 @@
 # ------------------------------------------------------
 
 type User {
-  id: Int!
+  id: Int
   username: String
   posts: [Post!]
-  joinDate: DateTime!
+  joinDate: DateTime
+  password: String
 }
 
 """
@@ -20,11 +21,21 @@ type Post {
   content: String!
 }
 
+type AuthLoginTokenResponse {
+  access_token: String!
+}
+
 type Query {
+  login(data: AuthLoginInput!): AuthLoginTokenResponse!
   user(id: Float!): User
   listAllUsers: [User!]
   whoAmI: User!
   post(id: String!): Post!
+}
+
+input AuthLoginInput {
+  username: String!
+  password: String!
 }
 
 type Mutation {
@@ -33,4 +44,5 @@ type Mutation {
 
 input UserCreateInput {
   username: String!
+  password: String!
 }

@@ -3,7 +3,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { PostModule } from "./posts/post.module";
 import { UserModule } from "./users/user.module";
 import { AuthModule } from './auth/auth.module';
-import { AppController } from "./app.controller";
+// import { AppController } from "./app.controller";
 
 @Module({
   imports: [
@@ -13,10 +13,11 @@ import { AppController } from "./app.controller";
     GraphQLModule.forRoot({
       autoSchemaFile: require('path').join(process.cwd(), 'src/schema.gql'),
       debug: true,
+      // context: ({req, res}) => ({req, res}),
       playground: true,
     }),
   ],
 
-  controllers: [AppController],
+  // controllers: [AppController],
 })
 export class AppModule {}

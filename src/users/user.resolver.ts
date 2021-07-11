@@ -4,12 +4,14 @@ import { User, UserUniqueInput, UserCreateInput } from "./user.model";
 import { GqlAuthGuard } from "@global/auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
 import { CurrentUser } from "./user.current";
+// import { AuthService } from '@global/auth/auth.service'
 
 @Resolver(User)
 export class UserResolver {
   constructor(
     // @Inject(PrismaService)
     private userService: UserService,
+    // private authService: AuthService
   ) {}
 
   @Mutation(_=>User)
@@ -28,13 +30,24 @@ export class UserResolver {
   }
 
   @Query(_=>[User], {nullable:true})
+  @UseGuards(GqlAuthGuard)
   async listAllUsers(){
     return this.userService.findAll();
   }
 
+  /* @Query(_=>String, {nullable:true})
+  async login(){
+    // this.authService.login({username: "hi", password: "hi"})
+    return "OK"
+  } */
+
   @Query(_=>User)
   @UseGuards(GqlAuthGuard)
   whoAmI(@CurrentUser() user: User) {
-    return this.userService.findOneById({id: user.id})
+    console.log(user)
+    // if (user.id) {
+      // return this.userService.findOneById({id: user.id})
+    // }
+    return {}
   }
 }

@@ -9,7 +9,6 @@ export class AppController{
   // @UseGuards(GqlAuthGuard)
   @Post('auth/login')
   async login(@Request() req: any) {
-    console.log(req.body)
     return this.authService.login(req.body)
   }
 }
