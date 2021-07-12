@@ -9,7 +9,6 @@ import { CurrentUser } from "@decorators/user.dec";
 @Resolver(User)
 export class UserResolver {
   constructor(
-    // @Inject(PrismaService)
     private userService: UserService,
     // private authService: AuthService
   ) {}
@@ -17,9 +16,8 @@ export class UserResolver {
   @Mutation(_=>User)
   async createUser(
     @Args('data') data: UserCreateInput,
-    // @Args('password') password: string
   ) {
-    // let input: UserCreateInput = {username}
+    
     return this.userService.create(data)
   }
 
@@ -41,6 +39,5 @@ export class UserResolver {
     if (user.id) {
       return this.userService.findOneById({id: user.id})
     }
-    // return {}
   }
 }

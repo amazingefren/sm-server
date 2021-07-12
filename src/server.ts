@@ -4,9 +4,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
-// import fastifyCookie from "fastify-cookie";
 import { AppModule } from "./app.module";
-// import fastifyCookie = require('fastify-cookie')
 import fastifyCookie = require('fastify-cookie')
 
 async function bootstrap() {
@@ -14,9 +12,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
-
   app.register(fastifyCookie as any, {secret: process.env.JWT_SECRET})
-
   await app.listen(3000);
 }
 

@@ -6,6 +6,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./strategy/jwt.strategy";
 import { AuthResolver } from "./auth.resolver";
 import { CookieInterceptor } from "./interceptor/cookie.service";
+import { PrismaService } from '@services/prisma.service'
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { CookieInterceptor } from "./interceptor/cookie.service";
       signOptions: { expiresIn: "5m" },
     }),
   ],
-  providers: [AuthResolver, AuthService, JwtStrategy, CookieInterceptor],
+  providers: [PrismaService, AuthResolver, AuthService, JwtStrategy, CookieInterceptor],
   exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

@@ -11,7 +11,6 @@ export class UserService {
     id: 0,
     username: "bob",
     joinDate: new Date(Date.now()),
-    password: "HI",
     posts: [],
   };
 

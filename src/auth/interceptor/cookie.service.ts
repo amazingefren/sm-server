@@ -36,7 +36,7 @@ export class CookieInterceptor implements NestInterceptor {
         // :(
         // THIS WAS ALOT MORE COMPLEX THAN I THOUGH (with nestjs+graphql+fastify)
         // BUT ATLEAST ITS POSSIBLE
-        console.log(response);
+        // console.log(response);
       })
     );
   }

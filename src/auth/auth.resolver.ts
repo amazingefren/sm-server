@@ -12,9 +12,9 @@ export class AuthResolver {
   constructor(private authService: AuthService) {}
 
   @Query((_) => AuthLoginTokenResponse)
-  // async login(@Context() context: any, @Args("data") data: AuthLoginInput) {
   @UseInterceptors(CookieInterceptor)
   async login(@Args("data") data: AuthLoginInput) {
+    // TODO: Refresh tokens
     // Intercepting Response, will assign cookie
     return this.authService.login(data);
   }

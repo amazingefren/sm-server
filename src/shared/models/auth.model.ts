@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
+import { User } from './user.model'
 
 @ObjectType()
 export class AuthLoginTokenResponse {
@@ -14,5 +15,11 @@ export class AuthLoginInput{
   username: string
 
   @Field({nullable: false})
+  password: string
+}
+
+@ObjectType()
+export class AuthUser extends User{
+  @Field({nullable:false})
   password: string
 }

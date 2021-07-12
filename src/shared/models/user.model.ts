@@ -30,6 +30,6 @@ export class User {
   @Field(_=>Date, {nullable: true})
   joinDate?: Date
 
-  @Field(_=>String, {nullable: true})
-  password?: string;
+  // @Field(_=>String, {nullable: true})
+  // password?: string;
 }
