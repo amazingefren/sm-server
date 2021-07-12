@@ -1,5 +1,7 @@
 # SM-SERVER  -- *temp*
 
+[Development Board](https://github.com/amazingefren/sm-server/projects/1)
+
 Development will be slower as I am currently working on another project
 You might see secretkeys, note that it is okay and they are not real keys :) or maybe they are
 
