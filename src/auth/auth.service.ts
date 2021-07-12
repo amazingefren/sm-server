@@ -21,6 +21,7 @@ export class AuthService {
     if (user && username == user.username && password == user.password){
       let token = this.jwtService.sign({sub: user.id})
       console.log("JWT: Assigning Token = " + token)
+
       return {access_token: token} 
     }
     return null

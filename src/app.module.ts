@@ -13,11 +13,11 @@ import { AuthModule } from './auth/auth.module';
     GraphQLModule.forRoot({
       autoSchemaFile: require('path').join(process.cwd(), 'src/gen/schema.gql'),
       debug: true,
-      // context: ({req, res}) => ({req, res}),
+      // cors: {origin:true, credentials: true, exposedHeaders: ['*']},
+      cors: {origin:"https://studio.apollographql.com", credentials: true, exposedHeaders: ['*']},
+      context: ({request,reply})=>({request,response:reply}),
       playground: true,
     }),
   ],
-
-  // controllers: [AppController],
 })
 export class AppModule {}

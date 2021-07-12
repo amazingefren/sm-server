@@ -19,8 +19,12 @@
     "@nestjs/platform-fastify": "^8.0.1",
     "@prisma/client": "^2.26.0",
     "apollo-server-fastify": "^3.0.0-alpha.3",
+    "fastify": "^3.19.0",
+    "fastify-cookie": "^5.3.1",
     "graphql": "^15.5.1",
     "graphql-tools": "^7.0.5",
+    "lodash": "^4.17.21",
+    "nest-cookies": "^1.2.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -28,6 +32,7 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.171",
     "@types/node": "^16.3.0",
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
