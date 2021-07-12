@@ -5,7 +5,6 @@ import { AuthService } from "./auth.service";
 import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./strategy/jwt.strategy";
 import { AuthResolver } from "./auth.resolver";
-// import { jwtConstants } from "./constants";
 
 @Module({
   imports: [

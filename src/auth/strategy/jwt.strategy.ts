@@ -1,7 +1,6 @@
 import { JwtDTO } from "@dto/jwt.dto";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-// import { jwtConstants } from "auth/constants";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { AuthService } from "../auth.service";
 
