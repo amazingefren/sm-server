@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common'
-import { Post } from '@global/gen/graphql.schema'
+// import { Post } from '@global/gen/graphql.schema'
 
 @Injectable()
 export class PostService {
-  private readonly post: Post = {
+  private readonly post: {} = {
     id: "0", 
     owner: "0",
     content: "Post Test"
   }
 
-  create(post: Post): Post {
+  create(post: {}): {} {
     return post
   }
 
-  findOneById(id: string): Post {
-    if (id == this.post.id) {
+  findOneById(id: string): {} {
+    if (id == this.post) {
       return this.post
     }
     return Object.assign(this.post, {content: "Not Found"})

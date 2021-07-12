@@ -11,7 +11,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     PostModule,
     GraphQLModule.forRoot({
-      autoSchemaFile: require('path').join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: require('path').join(process.cwd(), 'src/gen/schema.gql'),
       debug: true,
       // context: ({req, res}) => ({req, res}),
       playground: true,

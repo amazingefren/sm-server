@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { Field, Int, ObjectType, InputType } from '@nestjs/graphql'
-import { Post } from "@global/posts/post.model"
+import { Post } from "@models/post.model"
 
 @InputType()
 export class UserCreateInput {

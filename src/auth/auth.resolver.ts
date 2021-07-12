@@ -1,11 +1,11 @@
-import { User } from "@global/users/user.model";
+import { User } from "@models/user.model";
 import {
   Resolver,
   Query,
   Args,
 } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
-import { AuthLoginInput, AuthLoginTokenResponse } from "./auth.model";
+import { AuthLoginInput, AuthLoginTokenResponse } from "@models/auth.model";
 // import { GqlAuthGuard } from "./gql-auth.guard";
 // import { UseGuards } from "@nestjs/common";
 

@@ -24,9 +24,12 @@
 
     "baseUrl": "./src",
     "paths": {
-      "@util/*": ["util/*"],
-      "@prisma/*": ["prisma/*"],
-      "@global/*": ["*"]
+      "@decorators/*": ["shared/decorators/*"],
+      "@dto/*": ["shared/dto/*"],
+      "@models/*": ["shared/models/*"],
+      "@services/*": ["shared/services/*"],
+      "@guards/*": ["shared/guards/*"],
+      "@users/*": ["users/*"]
     }
   },
   "exclude": ["node_modules"],

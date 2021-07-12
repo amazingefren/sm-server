@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from '@global/users/user.service'
+import { UserService } from '@users/user.service'
 import { JwtService } from '@nestjs/jwt'
-import { AuthLoginInput } from './auth.model';
-import { User } from '@global/users/user.model';
+import { AuthLoginInput } from '@models/auth.model';
+import { User } from '@models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,9 @@ export class AuthService {
     const {username, password} = input
     const user = await this.userService.findOneByUsername(username)
     if (user && username == user.username && password == user.password){
-      return {access_token: this.jwtService.sign({sub: user.id})} 
+      let token = this.jwtService.sign({sub: user.id})
+      console.log("JWT: Assigning Token = " + token)
+      return {access_token: token} 
     }
     return null
   }
