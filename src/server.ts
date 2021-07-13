@@ -5,19 +5,19 @@ import {
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 import { AppModule } from "./app.module";
-import fastifyCookie = require('fastify-cookie')
+import fastifyCookie = require("fastify-cookie");
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
   );
-  app.register(fastifyCookie as any, {secret: process.env.JWT_SECRET})
+  app.register(fastifyCookie as any, { secret: process.env.JWT_SECRET });
   await app.listen(3000);
 }
 
-try{
+try {
   bootstrap();
-} catch(err) {
-  throw new Error(err)
+} catch (err) {
+  throw new Error(err);
 }

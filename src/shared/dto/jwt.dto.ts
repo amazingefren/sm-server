@@ -1,3 +1,3 @@
-export interface JwtDTO{
-  sub: number
+export interface JwtDTO {
+  sub: number;
 }

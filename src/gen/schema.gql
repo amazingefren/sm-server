@@ -20,12 +20,16 @@ type Post {
   content: String!
 }
 
-type AuthLoginTokenResponse {
+type AuthSafeUserLogin {
+  id: Int
+  username: String
+  posts: [Post!]
+  joinDate: DateTime
   access_token: String!
 }
 
 type Query {
-  login(data: AuthLoginInput!): AuthLoginTokenResponse!
+  login(data: AuthLoginInput!): AuthSafeUserLogin!
   user(id: Float!): User
   listAllUsers: [User!]
   whoAmI: User!
@@ -38,10 +42,10 @@ input AuthLoginInput {
 }
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
+  register(data: AuthRegisterInput!): AuthSafeUserLogin!
 }
 
-input UserCreateInput {
+input AuthRegisterInput {
   username: String!
   password: String!
 }
