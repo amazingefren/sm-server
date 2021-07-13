@@ -25,7 +25,7 @@ type AuthSafeUserLogin {
   username: String
   posts: [Post!]
   joinDate: DateTime
-  access_token: String!
+  access_token: String
 }
 
 type Query {

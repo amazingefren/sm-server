@@ -8,6 +8,9 @@ import {
 } from "@models/auth.model";
 import { PrismaService } from "@services/prisma.service";
 // import { User } from "@models/user.model";
+import * as bcrypt from 'bcrypt'
+
+const saltRounds = 12
 
 @Injectable()
 export class AuthService {
@@ -33,16 +36,18 @@ export class AuthService {
   // Args: Input = {username: string, password: string}
   // Returns: {typeof User + access_token: JWT_TOKEN}
   async login(input: AuthLoginInput): Promise<AuthSafeUserLogin | null> {
-    const { username, password } = input;
-    const user = await this.authFindByUsername(username);
-    if (user && username == user.username && password == user.password) {
-      let token = this.jwtService.sign({ sub: user.id });
-      console.log("JWT: Assigning Token = " + token);
-      let { password, ...payload } = {
-        access_token: "Bearer " + token,
-        ...user,
-      };
-      return payload;
+    const user = await this.authFindByUsername(input.username);
+    if (user && input.username == user.username) {
+      const isValid = await bcrypt.compare(input.password, user.password)
+      if (isValid) {
+        let token = this.jwtService.sign({ sub: user.id });
+        console.log("JWT: Assigning Token = " + token);
+        let { password, ...payload } = {
+          access_token: "Bearer " + token,
+          ...user,
+        };
+        return payload;
+      }
     }
     return null;
   }
@@ -50,8 +55,10 @@ export class AuthService {
   // Register
   async register(input: AuthRegisterInput): Promise<boolean> {
     try {
+      const hash = await bcrypt.hash(input.password, saltRounds)
+      const data = {username: input.username, password: hash}
       const user = await this.prisma.user.create({
-        data: { username: input.username, password: input.password },
+        data,
       });
       return user ? true : false;
     } catch (err) {

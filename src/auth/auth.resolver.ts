@@ -39,7 +39,6 @@ export class AuthResolver {
   ) {
     const success = await this.authService.register(data);
     const { username, password } = data;
-
     if (success) {
       const user = await this.authService.login({ username, password });
       if (user) {
@@ -51,7 +50,7 @@ export class AuthResolver {
     } else {
       // Need GraphQL error handling
       // NOTE_TO_SELF: Logging after Error Handling
-      return { Error: "failed to register user" };
+      return { username: "failed to register user" };
     }
   }
 }

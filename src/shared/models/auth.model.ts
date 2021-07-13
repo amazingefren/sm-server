@@ -25,7 +25,7 @@ export class AuthUser extends User {
 
 @ObjectType()
 export class AuthSafeUserLogin extends User {
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   access_token: string;
 }
 
