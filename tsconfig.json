@@ -29,7 +29,8 @@
       "@models/*": ["shared/models/*"],
       "@services/*": ["shared/services/*"],
       "@guards/*": ["shared/guards/*"],
-      "@users/*": ["users/*"]
+      "@users/*": ["users/*"],
+      "@util/*": ["util/*"]
     }
   },
   "exclude": ["node_modules"],
