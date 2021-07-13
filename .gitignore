@@ -11,3 +11,6 @@ constants.ts
 # MIGRATIONS WILL NOT BE SAVED (IM OKAY WITH BREAKING MY DATABASE)
 # THIS WILL BE REMOVED LATER
 migrations/
+
+# To be added when closer to prod
+yarn.lock
