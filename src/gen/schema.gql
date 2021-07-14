@@ -34,6 +34,7 @@ type Query {
   listAllUsers: [User!]
   whoAmI: User!
   post(id: String!): Post!
+  userPosts: [Post!]!
 }
 
 input AuthLoginInput {
@@ -43,9 +44,14 @@ input AuthLoginInput {
 
 type Mutation {
   register(data: AuthRegisterInput!): AuthSafeUserLogin!
+  createPost(data: CreatePostInput!): Boolean!
 }
 
 input AuthRegisterInput {
   username: String!
   password: String!
+}
+
+input CreatePostInput {
+  content: String!
 }
