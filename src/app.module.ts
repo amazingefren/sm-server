@@ -14,7 +14,7 @@ import { AuthModule } from "./auth/auth.module";
       debug: true,
       cors: { origin: "https://studio.apollographql.com", credentials: true },
       context: ({ request, reply }) => ({ request, response: reply }),
-      playground: true,
+      // playground: true,
     }),
   ],
 })

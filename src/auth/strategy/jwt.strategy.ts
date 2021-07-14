@@ -22,6 +22,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       console.log("JWT_STRATEGY: NON_EXISTANT USER REQUESTED");
       throw new UnauthorizedException();
     }
-    return exists;
+    else {
+      return {id: input.sub};
+    }
   }
 }
