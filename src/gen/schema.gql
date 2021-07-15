@@ -16,7 +16,7 @@ scalar DateTime
 
 type Post {
   id: Int!
-  owner: User!
+  owner: User
   content: String!
 }
 
@@ -33,8 +33,8 @@ type Query {
   user(id: Float!): User
   listAllUsers: [User!]
   whoAmI: User!
-  post(id: String!): Post!
-  userPosts: [Post!]!
+  post(id: Float!): Post!
+  myPosts: [Post!]!
 }
 
 input AuthLoginInput {

@@ -1,3 +1,5 @@
+import { Post } from "@models/post.model";
+import { User } from "@models/user.model";
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "@services/prisma.service";
 // import { Post } from '@global/gen/graphql.schema'
@@ -5,11 +7,6 @@ import { PrismaService } from "@services/prisma.service";
 @Injectable()
 export class PostService {
   constructor(private prisma: PrismaService){}
-  private readonly post: {} = {
-    id: "0",
-    owner: "0",
-    content: "Post Test",
-  };
 
   async create(id: number, content: string): Promise<any> {
     console.log("Creating New Post: ", {id, content})
@@ -17,19 +14,14 @@ export class PostService {
     console.log(await this.prisma.post.create({data}))
   }
 
-  findOneById(id: string): {} {
-    if (id == this.post) {
-      return this.post;
-    }
-    return Object.assign(this.post, { content: "Not Found" });
+  // Return type I need error handling
+  async findOneById(id: number): Promise<Post & {owner: User | null}| null> {
+    return await this.prisma.post.findUnique({where: {id}, include: {owner: true}})
   }
 
   // NO N+1 ISSUE
-  async findByUserId(id: number){
-    // Want to see if I can create conditional based on query, for which
-    // Conditional {include: *} 
-    // will be included to prevent +1 query call from prisma
-    const data = await this.prisma.post.findMany({where: {ownerId: id}, include: {owner: true}})
-    return data
+  // Return type I need error handling
+  async findByUserId(id: number, getUser: boolean): Promise<(Post & {owner: User | null})[] | null>{
+    return await this.prisma.post.findMany({where: {ownerId: id}, include: {owner: getUser}})
   }
 }

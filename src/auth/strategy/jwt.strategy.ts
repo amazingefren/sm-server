@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
   // TODO: Error to Promise
   // RETURNS: <Boolean | Error>
-  async validate(input: JwtDTO): Promise<any> {
+  async validate(input: JwtDTO): Promise<JwtDTO> {
     const exists = await this.authService.validateJwtId(input.sub);
     if (!exists) {
       // TEST: Change JWT Payload to a NON_EXISTANT ID
@@ -23,7 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException();
     }
     else {
-      return {id: input.sub};
+      return input; 
     }
   }
 }

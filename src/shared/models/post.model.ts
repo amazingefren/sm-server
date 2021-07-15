@@ -8,13 +8,19 @@ export class CreatePostInput{
   content: string;
 }
 
+@InputType()
+export class FindPostInput{
+  @Field(_=>Int, {nullable: false})
+  id: number;
+}
+
 @ObjectType()
 export class Post {
   @Field((_) => Int)
   id: number;
 
-  @Field((_) => User)
-  owner: User;
+  @Field(_ => User, {nullable: true})
+  owner: User | null;
 
   @Field((_) => String)
   content: string;
